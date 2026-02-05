@@ -20,7 +20,7 @@ jobs:
     steps:
       - run: echo "✅ Repo-level approval granted"
 
-  deploy:
+  repo-b:
     needs: approval
     uses: vasunaidu-2/shared-workflows/.github/workflows/shared-deploy.yml@main
     with:
