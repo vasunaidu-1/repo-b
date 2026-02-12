@@ -44,7 +44,6 @@ jobs:
 
   deploy-prod-west:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.environment == 'prod-west' }}
-    name: ${{ inputs.operation == 'rollback' && 'Rollback' || 'Deploy' }} – prod-west
     needs: approval-prod-west
     uses: vasunaidu-2/shared-workflows/.github/workflows/shared-deploy.yml@main
     with:
@@ -68,7 +67,6 @@ jobs:
 
   deploy-prod-east:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.environment == 'prod-east' }}
-    name: ${{ inputs.operation == 'rollback' && 'Rollback' || 'Deploy' }} – prod-east
     needs: approval-prod-east
     uses: vasunaidu-2/shared-workflows/.github/workflows/shared-deploy.yml@main
     with:
@@ -84,7 +82,6 @@ jobs:
 # =========================================================
   deploy-auto-prod-west:
     if: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.environment == 'prod-west' }}
-    name: ${{ github.event.client_payload.operation == 'rollback' && 'Rollback' || 'Deploy' }} – prod-west (orchestrated)
     uses: vasunaidu-2/shared-workflows/.github/workflows/shared-deploy.yml@main
     with:
       service: ${{ github.event.repository.name }}
@@ -99,7 +96,6 @@ jobs:
 # =========================================================
   deploy-auto-prod-east:
     if: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.environment == 'prod-east' }}
-    name: ${{ github.event.client_payload.operation == 'rollback' && 'Rollback' || 'Deploy' }} – prod-east (orchestrated)
     uses: vasunaidu-2/shared-workflows/.github/workflows/shared-deploy.yml@main
     with:
       service: ${{ github.event.repository.name }}
